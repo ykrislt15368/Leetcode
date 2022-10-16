@@ -1,0 +1,31 @@
+class Solution {
+public:
+    long long countSubarrays(vector<int>& nu, int mi, int mx) {
+        int n=nu.size();
+        bool mnf=false;
+        bool mxf=false;
+        int mni=-1;
+        int mxi=-1;
+        int st=0;
+        long long res=0;
+        for(int i=0;i<n;i++){
+            if(nu[i]<mi || nu[i]>mx){
+                mnf=false;
+                mxf=false;
+                st=i+1;
+            }
+            if(nu[i]==mi){
+                mnf=true;
+                mni=i;
+            }
+            if(nu[i]==mx){
+                mxf=true;
+                mxi=i;
+            }
+            if(mnf && mxf){
+                res+=(min(mni,mxi)-st+1);
+            }
+        }
+        return res;
+    }
+};
