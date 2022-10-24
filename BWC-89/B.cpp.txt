@@ -1,0 +1,28 @@
+class Solution {
+public:
+    using ll=long long;
+    vector<int> productQueries(int n, vector<vector<int>>& qu) {
+        
+        int mod=1e9+7;
+        int temp=n;
+        vector<int> ans;
+        int prd=1;
+        while(temp){
+            if(temp&1) ans.push_back(prd);
+            prd=(prd*2)%mod;
+            temp>>=1;
+        }
+        
+        int k=qu.size();
+        vector<int> ps;
+        for(int i=0;i<k;i++){
+            int x=qu[i][0];
+            int y=qu[i][1];
+            ll as=1;
+            for(int j=x;j<=y;j++) as=(as*ans[j])%mod;
+            ps.push_back(as);
+        }
+        
+        return ps;
+    }
+};

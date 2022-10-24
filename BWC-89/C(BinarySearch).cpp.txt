@@ -1,0 +1,25 @@
+class Solution {
+public:
+    using ll=long long;
+    bool f(int mid,vector<int>& nu){
+        int n=nu.size();
+        ll sm=0;
+        for(int i=0;i<n;i++){
+            sm+=nu[i];
+            if(sm>(ll)(i+1)*mid) return false;
+        }
+        return true;    
+    }
+    int minimizeArrayValue(vector<int>& nu) { 
+        int n=nu.size();
+        int l=0;
+        int h=*max_element(nu.begin(),nu.end());
+        int mid;
+        while(l<h){
+            mid=(l+h)>>1;
+            if(f(mid,nu)) h=mid;
+            else l=mid+1;
+        }
+        return l;
+    }
+};

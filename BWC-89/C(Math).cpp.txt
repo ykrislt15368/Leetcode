@@ -1,0 +1,16 @@
+class Solution {
+public:
+    using ll=long long;
+    int minimizeArrayValue(vector<int>& nu) {
+        
+        int n=nu.size();
+        ll ans=0;
+        ll res=0;
+        for(int i=0;i<n;i++){
+            ans+=nu[i];
+            res=max(res,(ans+i)/(i+1));
+        }
+        return res;
+        
+    }
+};
